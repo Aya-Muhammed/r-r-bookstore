@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} | Welcome {% endblock %}
+
+{% block content %}
+                <!-- SLIDER -->
+    			<div id="slider" class="carousel slide" data-ride="carousel">
+			    	<div class="carousel-inner">
+			    		<div class="carousel-item carousel-image-1 active">
+
+			    		</div>
+			    		<div class="carousel-item carousel-image-2">
+
+			    		</div>
+			    		<div class="carousel-item carousel-image-3">
+
+			    		</div>
+			    	</div>
+			    	<a href="#slider" class="carousel-control-prev" data-slide="prev">
+            			<span class="carousel-control-prev-icon"></span>
+          			</a>
+
+          			<a href="#slider" class="carousel-control-next" data-slide="next">
+            			<span class="carousel-control-next-icon"></span>
+          			</a>
+    			</div>
+
+	<!-- NEW RELEASING SECTION -->
+    <section id="new-releases" class="p-4 text-white">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-8 text-center">
+    				<h2 class="text-left pb-4">New Releases</h2>
+    					<div class="row">
+							{% if new_books %}
+								{% for book in new_books %}
+									<div class="col-md-3">
+										<a href="{% url 'book' book.id %}"><img src="{{ book.img.url }}"></a>
+										<a href="{% url 'book' book.id %}"><p class="mt-2">{{ book.title }}</p></a>
+										<p class="text-muted">{{ book.publish_house }}</p>
+										<p>{{ book.price }}</p>
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="col-md-8">
+									<p>No Books Available</p>
+								</div>
+							{% endif %}
+						</div>
+    			</div>
+    			<div class="col-md-4">
+    				<h2 class="pl-4">New in Accessory</h2>
+					{% for advertise in advertises %}
+    					<img class ="mt-2 ml-3" src="{{ advertise.img.url }}" style="display: inline-block !important;">
+					{% endfor %}
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+    <!-- BEST SELLING SECTION -->
+    <section id="best-selling" class="pb-4 text-white">
+    	<div class="container">
+    		<h2 class="pb-2">Best Selling</h2>
+    		<div class="row">
+    			<div class="col-md-8 text-center">
+    					<div class="row">
+								{% if bestselling_books %}
+									{% for book in bestselling_books %}
+										<div class="col-md-3">
+											<a href="{% url 'book' book.id %}"><img src="{{ book.img.url }}"></a>
+											<a href="{% url 'book' book.id %}"><p class="mt-2">{{ book.title }}</p></a>
+											<p class="text-muted">{{ book.publish_house }}</p>
+											<p>{{ book.price }}</p>
+										</div>
+									{% endfor %}
+								{% else %}
+									<div class="col-md-8">
+										<p>No Books Available</p>
+									</div>
+								{% endif %}
+    					</div>
+    			</div>
+    			<div class="col-md-4">
+                    <h2 class="pb-2 pl-4">December 2018</h2>
+    			<table id="calender" class="table" style="width: 290px;">
+                    <thead>
+                        <tr>
+                            <th scope="col">M</th>
+                            <th scope="col">T</th>
+                            <th scope="col">W</th>
+                            <th scope="col">T</th>
+                            <th scope="col">F</th>
+                            <th scope="col">S</th>
+                            <th scope="col">S</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <div>
+                               <td class="add">1</td>
+                            </div>
+
+                            <td class="add">2</td>
+                        </tr>
+                        <tr>
+                            <td class="add">3</td>
+                            <td class="add">4</td>
+                            <td class="add">5</td>
+                            <td class="add">6</td>
+                            <td class="add">7</td>
+                            <td class="add">8</td>
+                            <td class="add">9</td>
+                        </tr>
+                        <tr>
+                            <td class="add">10</td>
+                            <td class="add">11</td>
+                            <td class="add font-weight-bold text-primary">12</td>
+                            <td class="add">13</td>
+                            <td class="add">14</td>
+                            <td class="add">15</td>
+                            <td class="add">16</td>
+                        </tr>
+                        <tr>
+                            <td class="add">17</td>
+                            <td class="add">18</td>
+                            <td class="add">19</td>
+                            <td class="add">20</td>
+                            <td class="add">21</td>
+                            <td class="add">22</td>
+                            <td class="add">23</td>
+                        </tr>
+                        <tr>
+                            <td class="add">24</td>
+                            <td class="add">25</td>
+                            <td class="add">26</td>
+                            <td class="add">27</td>
+                            <td class="add">28</td>
+                            <td class="add">29</td>
+                            <td class="add">30</td>
+                        </tr>
+                        <tr>
+                            <td class="add">31</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+    		</div>
+    		</div>
+    	</div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter" class="py-5">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-7 text-white">
+    				<h2>SUBSCRIBE TO NEWSLETTER</h2>
+    			</div>
+    			<div class="col-md-5">
+    				<form class="form-inline justify-content-center">
+			            <input type="text" class="form-control form-control-sm mb-2 mx-2" placeholder="Enter Name">
+			            <button class="btn btn-primary btn-sm mb-2">Submit</button>
+                    </form>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %} | {{ book.title }} {% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <!-- VIEW BOOK SECTION -->
+    <section id="view-book" class="py-5 text-white">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-3">
+    				<img src="{{ book.img_inside.url }}">
+					{% if book.is_available %}
+    					<h4 class="text-white ml-5 mt-3">AVAILABLE</h4>
+					{% else %}
+					    <h4 class="text-muted ml-4 mt-2">NOT AVAILABLE</h4>
+					{% endif %}
+    			</div>
+    			<div class="col-md-9">
+    				<h3>{{ book.title }}</h3>
+    				<h4 class="text-primary">{{ book.author }}</h4>
+    				<h4 class="text-muted">{{ book.price }}</h4>
+    				<br>
+    				<p>{{ book.publish_house }}</p>
+    				<a href="#" class="d-block pb-3">{{ book.classification }}</a>
+					<form action="{% url 'cart_add' book.id %}" method="post">
+                       {% csrf_token %}
+                       {{ cart_product_form }}
+                       <input type="submit" value="add to cart" class="btn btn-primary">
+                    </form>
+					<!--
+					<a class="btn btn-success mr-5" href="#">
+                       <img src="{% static 'images/cart.png' %}" width="35" height="35"> Add to Cart
+                    </a>
+                    -->
+                    <button class="btn btn-info mr-5" data-toggle="modal" data-target="#modal1">
+                       <img src="{% static 'images/wishlist.png' %}" width="35" height="35"> Add to the Wish list
+                    </button>
+    			</div>
+    		</div>
+    		<div class="row">
+    			<div class="col py-5 text-center">
+    				<h3 class="mb-5">Similar books</h3>
+    				<div class="row d-flex justify-content-center">
+                        {% if similar_books %}
+                            {% for similar_book in similar_books %}
+                                {% if similar_book.classification == book.classification %}
+                                        <div class="col-md-3">
+                                            <a href="{% url 'book' similar_book.id %}"><img src="{{ similar_book.img.url }}"></a>
+                                            <a href="{% url 'book' similar_book.id %}"><p class="mt-2">{{ similar_book.title}}</p></a>
+                                            <p class="text-muted">{{ similar_book.author }}</p>
+                                            <p>{{ similar_book.price }}</p>
+                                        </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+					</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} | {{ event.name }} {% endblock %}
+
+{% load static %}
+
+{% block content %}
+   <section id="details" class="py-5 mt-5 text-white">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-2">
+                   <h6 class="font-weight-bold text-center">{{ event.name }}</h6>
+                </div>
+
+                <div class="col">
+                    <img src="{{ event.img_inside.url }}">
+                </div>
+
+                <div class="col mb-5 pb-5 col-sm">
+                    <p><img src="{% static 'images/date.png' %}" height="35" width="35" class="mr-3"> {{ event.date|date:"D d M Y" }}</p>
+                    <p><img src="{% static 'images/time.png' %}" height="35" width="35" class="mr-3"> {{ event.time|time:"H:i" }}</p>
+                    <p><img src="{% static 'images/location.png' %}" height="35" width="35" class="mr-3"> {{ event.location }}</p>
+                    <p>{{ event.about|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

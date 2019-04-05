@@ -1,0 +1,41 @@
+{% load static %}
+<!-- SECOND BAR -->
+    <section id="second-bar" class="py-2">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-6 offset-2 text-center">
+    				<ul class="list-inline">
+    					<li class="list-inline-item">
+    						<a href="{% url 'books' %}"><img src="{% static 'images/library.png' %}" height="30" height="30"> Books</a>
+    					</li>
+    					<li class="list-inline-item">
+    						<a href="{% url 'accessories' %}"><img src="{% static 'images/sunglasses.png' %}" height="30" height="30"> Accessories</a>
+    					</li>
+    					<li class="list-inline-item">
+    						<a href="{% url 'events' %}"><img src="{% static 'images/calendar.png' %}" height="30" height="30"> Events</a>
+    					</li>
+    					<li class="list-inline-item">
+    						<a href="{% url 'stores' %}"><img src="{% static 'images/board.png' %}" height="30" height="30"> Stores</a>
+    					</li>
+    					<li class="list-inline-item">
+    						<a href="contact_us.html"><img src="{% static 'images/letters.png' %}" height="30" height="30"> Contact us</a>
+    					</li>
+    				</ul>
+
+    			</div>
+    			<div class="col-md-4">
+    					<ul class="list-inline">
+    					<li class="list-inline-item">
+    						<a href="#"><img src="{% static 'images/facebook.png' %}" height="30" width="30"></a>
+    					</li>
+    					<li class="list-inline-item">
+    						<a href="#"><img src="{% static 'images/instagram.png' %}" height="30" width="30"></a>
+    					</li>
+    					<li class="list-inline-item">
+    						<a href="#"><img src="{% static 'images/twitter.png' %}" height="30" width="30"></a>
+    					</li>
+    				</ul>
+    			</div>
+    		</div>
+    	</div>
+    </section>

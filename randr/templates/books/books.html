@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block title %} | Books {% endblock %}
+
+{% block content %}
+ <!-- BOOKS SECTION -->
+    <section id="books" class="py-5 text-white">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-2 border-right border-primary">
+    				<h4>Filters</h4>
+    				<h6 class="font-weight-bold mt-5">Languages</h6>
+    				    <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="Arabic" value="option1">
+                            <label class="form-check-label" for="Arabic">Arabic</label>
+					   </div>
+    			       <div class="form-check">
+                           <input class="form-check-input" type="checkbox" id="English" value="option2">
+                           <label class="form-check-label" for="English">English</label>
+					   </div>
+        			   <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="French" value="option3">
+                            <label class="form-check-label" for="French">French</label>
+    					</div>
+
+    			     <h6 class="font-weight-bold mt-5">Categories</h6>
+    			     <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Art & Design" value="option1">
+                        <label class="form-check-label" for="Art & Design">Art & Design</label>
+					</div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Biographies" value="option2">
+                        <label class="form-check-label" for="Biographies">Biographies</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Business" value="option3">
+                        <label class="form-check-label" for="Business">Business</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Children" value="option4">
+                          <label class="form-check-label" for="Children">Children</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Cooking & Nutritio" value="option5">
+                        <label class="form-check-label" for="Cooking & Nutritio">Cooking & Nutrition</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Crafts & Hobbies" value="option6">
+                        <label class="form-check-label" for="Crafts & Hobbies">Crafts & Hobbies</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Egypt" value="option7">
+                        <label class="form-check-label" for="Egypt">Egypt</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="History & Politics" value="option8">
+                        <label class="form-check-label" for="History & Politics">History & Politics</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Literature & Fiction" value="option9">
+                        <label class="form-check-label" for="Literature & Fiction">Literature & Fiction</label>
+					</div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Mind & Body" value="option10">
+                        <label class="form-check-label" for="Mind & Body">Mind & Body</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Reference" value="option11">
+                        <label class="form-check-label" for="Reference">Reference</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Religion" value="option12">
+                        <label class="form-check-label" for="Religion">Religion</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Society" value="option13">
+                        <label class="form-check-label" for="Society">Society</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Sports" value="option14" >
+                        <label class="form-check-label" for="Sports">Sports</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Teens" value="option15">
+                        <label class="form-check-label" for="Teens">Teens</label>
+    			    </div>
+    			    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="category" id="Travel" value="option16">
+                        <label class="form-check-label" for="Travel">Travel</label>
+    			    </div>
+    		    </div>
+    		    <div class="col-md-10">
+    		    	<nav>
+						{% if books.has_other_pages %}
+							<ul class="pagination pagination-sm justify-content-end">
+								{% if books.has_previous %}
+									<li class="page-item">
+										<a href="?page={{books.previous_page_number}}" class="page-link">&laquo;</a>
+									</li>
+								{% else %}
+									<li class="page-item disabled">
+										<a class="page-link" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+										</a>
+									</li>
+								{% endif %}
+								{% for i in books.paginator.page_range %}
+									{% if books.number == i %}
+										<li class="page-item active">
+											<a class="page-link">{{i}}</a>
+										</li>
+									{% else %}
+										<li class="page-item">
+											<a href="?page={{i}}" class="page-link">{{i}}</a>
+										</li>
+									{% endif %}
+								{% endfor %}
+								{% if books.has_next %}
+									<li class="page-item">
+										<a href="?page={{books.next_page_number}}" class="page-link">&raquo;</a>
+									</li>
+								{% else %}
+									<li class="page-item disabled">
+										<a class="page-link" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+											<span class="sr-only">Next</span>
+										</a>
+									</li>
+								{% endif %}
+						    </ul>
+						{% endif %}
+					</nav>
+
+					<div class="row justify-content-center py-3 text-center books d-flex">
+						{% if books %}
+							{% for book in books %}
+    							<div class="col-md-3">
+									<a href="{% url 'book' book.id %}"><img src="{{ book.img.url }}"></a>
+									<a href="{% url 'book' book.id %}">
+										{% if book.title|length >= 20 %}
+										<p class="mt-2">
+											<abbr title="{{ book.title }}" style="text-decoration: none;">{{ book.title|truncatewords:2 }}</abbr>
+										</p>
+										{% else %}
+											<p class="mt-2">{{ book.title }}</p>
+										{% endif %}
+									</a>
+
+									{% if book.publish_house.name|length >= 20 %}
+										<p class="text-muted" >
+											<abbr title="{{ book.publish_house.name }}" style="text-decoration: none;">{{ book.publish_house.name|truncatewords:2 }}</abbr>
+										</p>
+									{% else %}
+									    <p class="text-muted">{{ book.publish_house }}</p>
+									{% endif %}
+
+									<p>{{ book.price }}</p>
+    							</div>
+							{% endfor %}
+					</div>
+						{% else %}
+						<div class="col-md-10">
+							<p>No Books Available</p>
+						</div>
+						{% endif %}
+				</div>
+    	    </div>
+		</div>
+	</section>
+{% endblock %}

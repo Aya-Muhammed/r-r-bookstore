@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+<section id="register-form" class="py-5 text-white">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col">
+    				<h4>NEW CUSTOMER</h4>
+    				<h6>By creating an account you will be able to track order status and keep track or the orders you have made previously.</h6>
+    			</div>
+    		</div>
+    		<div class="row mt-4 justify-content-center">
+                <!-- Alerts -->
+                {% include 'partials/_alerts.html' %}
+    			<form action="{% url 'register' %}" method="POST" class="col-md-8">
+                     {% csrf_token %}
+    			<div class="form-group row">
+    				<label for="first_name" class="col-sm-2 col-form-label">First Name:</label>
+    				<div class="col-sm-6">
+      					<input type="text" class="form-control" id="first_name" placeholder="First Name" name="first_name" required>
+    				</div>
+  				</div>
+  				<div class="form-group row">
+    				<label for="last_name" class="col-sm-2 col-form-label">Last Name:</label>
+   					 <div class="col-sm-6">
+      					<input type="text" class="form-control" id="last_name" placeholder="Last Name" name="last_name" required>
+    				</div>
+  				</div>
+                <div class="form-group row">
+    				<label for="username" class="col-sm-2 col-form-label">Username:</label>
+   					 <div class="col-sm-6">
+      					<input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+    				</div>
+  				</div>
+  				<div class="form-group row">
+    				<label for="phone" class="col-sm-2 col-form-label">Phone:</label>
+    				<div class="col-sm-6">
+      					<input type="text" class="form-control" id="phone" placeholder="Phone" name="phone">
+    				</div>
+  				</div>
+  				<div class="form-group row">
+    				<label for="email" class="col-sm-2 col-form-label">Email:</label>
+   					 <div class="col-sm-6">
+      					<input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+    				</div>
+  				</div>
+  				<div class="form-group row">
+    				<label for="password" class="col-sm-2 col-form-label">Password:</label>
+    				<div class="col-sm-6">
+      					<input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+    				</div>
+  				</div>
+  				<div class="form-group row">
+    				<label for="confirm_password" class="col-sm-2 col-form-label">Confirm password:</label>
+   					 <div class="col-sm-6">
+      					<input type="password" class="form-control mt-2" id="confirm_password" placeholder="Confirm password" name="confirm_password" required>
+    				</div>
+  				</div>
+
+                <div class="row my-5">
+                    <div class="col">
+                        <h4>BILLING ADDRESS</h4>
+                    </div>
+    		    </div>
+
+	    			<div class="form-group row">
+	    				<label for="address" class="col-sm-2 col-form-label">Address:</label>
+	    				<div class="col-sm-6">
+	      					<input type="text" class="form-control" id="address" placeholder="Address" name="address">
+	    				</div>
+	  				</div>
+	  				<div class="form-group row">
+	    				<label for="address2" class="col-sm-2 col-form-label">Address2:</label>
+	   					 <div class="col-sm-6">
+	      					<input type="text" class="form-control" id="address2" placeholder="Address2" name="address2">
+	    				</div>
+	  				</div>
+	  				<div class="form-group row">
+	    				<label for="city" class="col-sm-2 col-form-label">City:</label>
+	    				<div class="col-sm-6">
+	      					<input type="text" class="form-control" id="city" placeholder="City" name="city">
+	    				</div>
+	  				</div>
+
+    		<div class="row">
+    			<div class="col text-center">
+    				<button class="btn btn-info mr-2" type="reset">Reset</button>
+    				<button class="btn btn-success">Submit</button>
+    			</div>
+    		</div>
+    		</form>
+    		</div>
+            </div>
+    </section>
+{% endblock %}

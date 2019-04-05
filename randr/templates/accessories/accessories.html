@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %} | Accessories {% endblock %}
+
+{% block content %}
+<section id="accessories" class="py-5 text-white">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-2 border-right border-primary pt-5 mt-5">
+    				<h4>Filters</h4>
+    				<h6 class="font-weight-bold mt-5">Categories</h6>
+    				<div class="form-check">
+					  <input class="form-check-input" type="checkbox" id="Bookmarks" value="option1">
+					  <label class="form-check-label" for="Bookmarks">Bookmarks</label>
+    			    </div>
+    			    <div class="form-check">
+					  <input class="form-check-input" type="checkbox" id="Book covers" value="option2">
+					  <label class="form-check-label" for="Book covers">Book covers</label>
+    			    </div>
+    			    <div class="form-check">
+					  <input class="form-check-input" type="checkbox" id="Bookend" value="option3">
+					  <label class="form-check-label" for="Bookend">Bookend</label>
+    			    </div>
+    			    <div class="form-check">
+					  <input class="form-check-input" type="checkbox" id="Book stands" value="option1">
+					  <label class="form-check-label" for="Book stands">Book stands</label>
+    			    </div>
+    			    <div class="form-check">
+					  <input class="form-check-input" type="checkbox" id="Book light" value="option2">
+					  <label class="form-check-label" for="Book light">Book light</label>
+    			    </div>
+    			    <div class="form-check">
+					  <input class="form-check-input" type="checkbox" id="Notebooks" value="option3">
+					  <label class="form-check-label" for="Notebooks">Notebooks</label>
+    			    </div>
+    		    </div>
+    		    <div class="col-md-10">
+    		    	<nav>
+						{% if accessories.has_other_pages %}
+							<ul class="pagination pagination-sm justify-content-end">
+								{% if accessories.has_previous %}
+									<li class="page-item">
+										<a href="?page={{accessories.previous_page_number}}" class="page-link">&laquo;</a>
+									</li>
+								{% else %}
+									<li class="page-item disabled">
+										<a class="page-link" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+										</a>
+									</li>
+								{% endif %}
+								{% for i in accessories.paginator.page_range %}
+									{% if accessories.number == i %}
+										<li class="page-item active">
+											<a class="page-link">{{i}}</a>
+										</li>
+									{% else %}
+										<li class="page-item">
+											<a href="?page={{i}}" class="page-link">{{i}}</a>
+										</li>
+									{% endif %}
+								{% endfor %}
+								{% if accessories.has_next %}
+									<li class="page-item">
+										<a href="?page={{accessories.next_page_number}}" class="page-link">&raquo;</a>
+									</li>
+								{% else %}
+									<li class="page-item disabled">
+										<a class="page-link" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+											<span class="sr-only">Next</span>
+										</a>
+									</li>
+								{% endif %}
+						    </ul>
+						{% endif %}
+					</nav>
+
+					<div class="row d-flex justify-content-center pt-5 text-center">
+                        {% if accessories %}
+                            {% for accessory in accessories %}
+                                <div class="col-md-4">
+                                    <a href="{% url 'accessory' accessory.id %}"><img src="{{ accessory.img.url }}" height="190" width="239"></a>
+                                    <a href="{% url 'accessory' accessory.id %}">
+										{% if accessory.name|length >= 20 %}
+										<p class="mt-2">
+											<abbr title="{{ accessory.name }}" style="text-decoration: none;">{{ accessory.name|truncatewords:2 }}</abbr>
+										</p>
+										{% else %}
+											<p class="mt-2">{{ accessory.name }}</p>
+										{% endif %}
+									</a>
+                                    <p class="text-muted">L.E{{ accessory.price }}</p>
+                                </div>
+                            {% endfor %}
+                    </div>
+                        {% else %}
+                        <div class="col-md-10">
+							<p>No Accessories Available</p>
+						</div>
+                        {% endif %}
+    	        </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

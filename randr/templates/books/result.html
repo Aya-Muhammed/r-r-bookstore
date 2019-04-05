@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} | Search Result {% endblock %}
+
+{% block content %}
+<section id="search-form">
+    	<div class="container">
+            <div class="row mt-5 mb-2">
+                <div class="col">
+                    <h5 class="pb-5 text-white text-center display-4">What are you looking for?</h5>
+                </div>
+            </div>
+    		<form action="{% url 'result' %}" class="mb-4 text-white">
+			  <div class="form-row">
+			    <div class="form-group col-md-4">
+			      <label for="title">Title</label>
+			      <input type="text" name="title" class="form-control w-75" id="title" value="{{ values.title }}">
+			    </div>
+			    <div class="form-group col-md-4">
+			      <label for="author">Author</label>
+			      <select class="form-control w-75" id="author" name="author">
+                    <option selected="true" disabled="disabled">Authors (All)</option>
+                        {% for author in authors %}
+                            <option value="{{ author.name }}"
+									{% if author.name == values.author %}
+										selected
+									{% endif %}
+							>{{ author.name }}</option>
+                        {% endfor %}
+			      </select>
+			    </div>
+			    <div class="form-group col-md-4">
+			      <label for="min_price">Price</label> <small>from:</small>
+			      <input type="number" class="form-control w-75" id="min_price" name="min_price" value="{{ request.GET.min_price }}">
+			    </div>
+			  </div>
+
+			  <div class="form-row">
+			    <div class="form-group col-md-4">
+			      <label for="publisher">Publisher</label>
+			      <select class="form-control w-75" id="publisher" name="publisher">
+                    <option selected="true" disabled="disabled">Publishers (All)</option>
+                    {% for publish_house in publish_houses %}
+			      	 <option value="{{ publish_house.name }}"
+					 	{% if publish_house.name == values.publisher %}
+							 selected
+						{% endif %}
+					 >{{ publish_house.name }}</option>
+			        {% endfor %}
+			      </select>
+			    </div>
+			    <div class="form-group col-md-4">
+			      <label for="category">Category</label>
+			      <select class="form-control w-75" id="category" name="category">
+                       <option selected="true" disabled="disabled">Categories (All)</option>
+                      {% for key,value in Category_Choice.items %}
+                      <option value="{{ key }}"
+					  {% if key == values.category %}
+							  selected
+						{% endif %}
+					  >{{ value }}</option>
+                      {% endfor %}
+			      </select>
+			    </div>
+			    <div class="form-group col-md-4">
+			      <label for="max_price">Price</label> <small>to:</small>
+			      <input type="number" id="max_price" class="form-control w-75" name="max_price" value="{{ request.GET.max_price }}">
+			    </div>
+			  </div>
+              <button type="submit" class="btn btn-primary mb-5">Submit</button>
+			</form>
+    	</div>
+    </section>
+
+
+<section>
+	<div class="container">
+		<div class="row justify-content-center py-5 text-center books d-flex">
+						{% if books %}
+							{% for book in books %}
+    							<div class="col-md-3">
+									<a href="{% url 'book' book.id %}"><img src="{{ book.img.url }}"></a>
+									<a href="{% url 'book' book.id %}">
+										{% if book.title|length >= 20 %}
+										<p class="mt-2">
+											<abbr title="{{ book.title }}" style="text-decoration: none;">{{ book.title|truncatewords:2 }}</abbr>
+										</p>
+										{% else %}
+											<p class="mt-2">{{ book.title }}</p>
+										{% endif %}
+									</a>
+
+									{% if book.publish_house.name|length >= 20 %}
+										<p class="text-muted" >
+											<abbr title="{{ book.publish_house.name }}" style="text-decoration: none;">{{ book.publish_house.name|truncatewords:2 }}</abbr>
+										</p>
+									{% else %}
+									    <p class="text-muted">{{ book.publish_house }}</p>
+									{% endif %}
+
+									<p class="text-white">{{ book.price }}</p>
+    							</div>
+							{% endfor %}
+					</div>
+						{% else %}
+						<div class="col-md-10">
+							<h2 class="text-white">No Books Available</h2>
+						</div>
+						{% endif %}
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'admin/base.html' %}
+{% block extrahead %}
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+        #header {
+            background-color: black;
+            color: #fff;
+            height: 50px;
+        }
+
+        #branding h1 {
+            color: #fff;
+        }
+        #content h1 {
+            font-size: 25px;
+        }
+        div.breadcrumbs {
+            background: url('/static/images/second-bar.jpg');
+            height: 15px;
+            color: black;
+        }
+         div.breadcrumbs a {
+            color: black;
+            text-decoration: none;
+        }
+        div.breadcrumbs a:hover {
+            text-decoration: underline;
+            color: black;
+        }
+         div.breadcrumbs a:link {
+            color: black;
+        }
+        .module h2, .module caption, .inline-group h2 {
+            background: black;
+        }
+        .object-tools a:link, .object-tools a:visited {
+            background-color: black;
+        }
+        .button, input[type=submit], input[type=button], .submit-row input, a.button {
+            background: black;
+        }
+        .button.default, input[type=submit].default, .submit-row input.default {
+            background: black;
+        }
+    </style>
+{% endblock %}
+{% load static %}
+
+{% block branding %}
+<h1 id="head">
+    <img alt="R&R Bookstore" src="{% static 'images/logo2.png' %}" class="brand_img" height="50" width="55"> Admin Area
+</h1>
+{% endblock %}
+{% block content %}
+    <h1><img src="{% static 'images/administrator.png' %}" alt="" height="30" width="30">Site admin</h1>
+{% endblock %}
+
+
+
+
+

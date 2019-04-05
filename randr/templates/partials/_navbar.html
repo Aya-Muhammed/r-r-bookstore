@@ -1,0 +1,60 @@
+{% load static %}
+<!-- Navbar -->
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+		<div class="container">
+			<a href="{% url 'index' %}" class="navbar-brand mt-1"><img src="{% static 'images/logo2.png' %}" height="50" width="50">R&R Bookstore</a>
+				<ul class="navbar-nav ml-auto">
+					{% if user.is_authenticated %}
+						<li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/account.png' %}" height="30" width="30"> Welcome {{ user.username }}!</a>
+                        <div class="dropdown-menu">
+                        <a href="orders.html" class="dropdown-item"><img src="{% static 'images/my_orders.png' %}" height="30" width="30"> My Orders</a>
+                        <a href="cart.html" class="dropdown-item"><img src="{% static 'images/cart.png' %}" height="30" width="30"> My cart</a>
+                        <a href="wishlist.html" class="dropdown-item"><img src="{% static 'images/wishlist.png' %}" height="30" width="30"> Wish list</a>
+                        <a href="{% url 'account_settings' %}" class="dropdown-item"><img src="{% static 'images/account_settings.png' %}" height="30" width="30"> Account Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}"><img src="{% static 'images/logout.png' %}" height="35" width="35"> Logout
+							<form action="{% url 'logout' %}" method="POST" id="logout">
+								{% csrf_token %}
+								<input type="hidden">
+							</form>
+						</a>
+                        </div>
+                    </li>
+					{% else %}
+						<li class="nav-item">
+							{% if 'register' in request.path %}
+								<a class="btn btn-sm btn-primary active mt-1 mr-2" href="{% url 'register' %}">Sign Up</a>
+							{% else %}
+								<a class="btn btn-sm btn-outline-primary mt-1 mr-2" href="{% url 'register' %}">Sign Up</a>
+							{% endif %}
+						</li>
+						<li class="nav-item">
+							{% if 'login' in request.path %}
+								<a class="btn btn-sm btn-primary active mt-1 mr-2" href="{% url 'login' %}">Login</a>
+							{% else %}
+								<a class="btn btn-sm btn-outline-primary mt-1 mr-2" href="{% url 'login' %}">Login</a>
+							{% endif %}
+						</li>
+					{% endif %}
+				</ul>
+				<div class="input-group ml-5">
+					<input type="text" class="search form-control form-control-sm" placeholder="Search">
+					<div class="input-group-append">
+							<div class="dropdown">
+							<button class="btn btn-outline-success dropdown-toggle btn-sm" data-toggle="dropdown">Search type</button>
+							<div class="dropdown-menu">
+								<a href="#" class="dropdown-item">All Products</a>
+								<a href="#" class="dropdown-item">Books</a>
+								<a href="#" class="dropdown-item">Accessories</a>
+							</div>
+						</div>
+					</div>
+			    </div>
+				{% if 'advanced-search' in request.path %}
+			    	<a href="{% url 'advanced_search' %}" class="btn btn-primary active ml-auto btn-sm advanced-search">Advanced Search</a>
+				{% else %}
+			    	<a href="{% url 'advanced_search' %}" class="btn btn-outline-primary ml-auto btn-sm advanced-search">Advanced Search</a>
+			    {% endif %}
+	    </div>
+    </nav>

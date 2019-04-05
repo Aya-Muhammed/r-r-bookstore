@@ -1,0 +1,130 @@
+body {
+	
+	font-family: 'Quicksand', sans-serif;
+	background-color: black;
+	height: 100%;
+	
+}
+
+#preindex-intro {
+	margin-top: 50px;
+	line-height: 0.8;
+	font-size: 30px;
+}
+
+#preindex-bg {
+	background: url('../images/books.jpg');
+	position: relative;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	height: 3000px;
+}
+
+#preindex-bg .dark-overlay {
+	position: absolute;
+	top: 0;
+  	left: 0;
+  	height: 100%;
+  	width: 100%;
+  	background: rgba(0, 0, 0, 0.7);
+}
+
+.navbar {
+	background: url('../images/navbar.jpg');
+	background-position: center;
+	height: 67px;
+}
+
+.navbar .input-group {
+	width: 30%;
+}
+
+#second-bar {
+	background: url('../images/second-bar.jpg');
+	height: 50px;
+
+}
+
+#second-bar li a {
+	text-decoration: none;
+	color: black;
+}
+
+#slider .carousel-item {
+	height: 676px;
+}
+
+.carousel-image-1 {
+	background: url('../images/bookofthemonth.jpg');
+	background-size: cover;
+}
+
+.carousel-image-2 {
+	background: url('../images/quote1.jpg');
+	background-size: cover;
+}
+
+.carousel-image-3 {
+	background: url('../images/quote2.jpg');
+	background-size: cover;
+}
+
+#new-releases a, #best-selling a, .books a, #accessories .d-flex a, #accessories .form-check a, #checkout a, #books .border-right a {
+	text-decoration: none;
+	color: white;
+}
+
+#events a {
+	text-decoration: none;
+	
+}
+
+#footer {
+	background: url('../images/footer.jpg');
+}
+
+#contact-us .rounded {
+	background: url('../images/3132.jpg');
+	background-size: cover;
+}
+
+#settings button {
+	margin-left: 200px;
+}
+
+#checkout .check {
+	margin-top: -60px;
+}
+
+
+#best-selling #calender td.add {
+	background-color: #f5f5f5;
+	color: black;
+	border: 2px black solid;
+	text-align: center;
+	padding: 3px;
+	
+}
+
+@media (max-width: 991px) {
+            body{
+            	font-size: 14px;
+            	/* overflow-y: scroll; */ 
+            }
+            #preindex-intro .emoji {
+            	height: 30px;
+            	width: 30px;
+            }
+            .navbar .input-group-append, .advanced-search, .search, #slider{
+            	display: none;
+            }
+            .second-bar {
+            	display: none;
+            }
+            
+        }
+
+ #book .d-flex p {
+    font-weight: bold;
+}
